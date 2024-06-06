@@ -1,22 +1,41 @@
-function makeArray(firstArray, secondArray, maxLength) {
-    //обєднати рядки
-    const togetherArray = firstArray.concat(secondArray)
-    // умова якщо к-ть елементів нового рядка більша maxLength
-    if (togetherArray.length > maxLength) {
-        return togetherArray.slice(0, maxLength)
-    } else return togetherArray
-
+function calcAverageCalories(days) {
+    // масив пустий = 0
+if (days.length === 0) { return 0 }
+//загальна к-сть калорый    
+    let totalCalories = 0
+// проходимо  по обекту в масиві дні
+    for (let day of days) {
+        totalCalories += day.calories
+    }
+//середнє значення  калорій
+    let averageCalories = totalCalories / days.length
+    return averageCalories
 }
 
-console.log(makeArray(["Mango", "Poly"], ["Ajax", "Chelsea"], 3)) // ["Mango", "Poly", "Ajax"]
-console.log(makeArray(["Mango", "Poly", "Houston"], ["Ajax", "Chelsea"], 4)) // ["Mango", "Poly", "Houston", "Ajax"]
-console.log(makeArray(["Mango"], ["Ajax", "Chelsea", "Poly", "Houston"], 3)) // ["Mango", "Ajax", "Chelsea"]
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 2)) // ["Earth", "Jupiter"]
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 4)) // ["Earth", "Jupiter", "Neptune", "Uranus"]
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus", "Venus"], 0)) // []
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 3010 },
+    { day: "tuesday", calories: 3200 },
+    { day: "wednesday", calories: 3120 },
+    { day: "thursday", calories: 2900 },
+    { day: "friday", calories: 3450 },
+    { day: "saturday", calories: 3280 },
+    { day: "sunday", calories: 3300 }
+  ])
+) // 3180
 
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 2040 },
+    { day: "tuesday", calories: 2270 },
+    { day: "wednesday", calories: 2420 },
+    { day: "thursday", calories: 1900 },
+    { day: "friday", calories: 2370 },
+    { day: "saturday", calories: 2280 },
+    { day: "sunday", calories: 2610 }
+  ])
+) // 2270
 
-//Напиши функцію під назвою makeArray, яка приймає три параметри: firstArray (масив), secondArray (масив) і maxLength (число). 
-//Функція повинна створювати новий масив, який містить усі елементи з firstArray, а потім усі елементи з secondArray.
-//Якщо кількість елементів у новому масиві перевищує maxLengt, функція повинна повернути копію масиву з довжиною maxLength елементів.
-//В іншому випадку функція повинна повернути весь новий масив.
+console.log(
+  calcAverageCalories([])
+) // 0
